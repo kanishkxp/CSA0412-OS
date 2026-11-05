@@ -1,0 +1,10 @@
+image size                 : 524,288,000 bytes
+interrupt-driven: interrupts = 131,072,000   CPU time = 262.1 s
+DMA (64 KB blocks): interrupts = 8,000   CPU time = 16.0 ms
+reduction in interrupts    : 16,384 times
+buffer memory, interrupt-driven: about one word (4 B) in the device register + the final image area
+buffer memory, DMA             : one 64 KB block (or two for double buffering) + the final image area
+  if one interrupt costs 0.5 us -> interrupt-driven CPU time =    65.5 s
+  if one interrupt costs 1.0 us -> interrupt-driven CPU time =   131.1 s
+  if one interrupt costs 2.0 us -> interrupt-driven CPU time =   262.1 s
+  if one interrupt costs 5.0 us -> interrupt-driven CPU time =   655.4 s

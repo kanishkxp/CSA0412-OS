@@ -1,0 +1,6 @@
+normal wake-up lateness over 5000 wake-ups: average 206.6 us, 99th percentile 3823.0 us, worst 4839.3 us
+rt     wake-up lateness over 5000 wake-ups: average 28.7 us, 99th percentile 69.7 us, worst 2883.8 us
+normal wake-up lateness over 5000 wake-ups: average 258.9 us, 99th percentile 3845.7 us, worst 6851.6 us
+rt     wake-up lateness over 5000 wake-ups: average 25.9 us, 99th percentile 68.5 us, worst 1492.9 us
+normal wake-up lateness over 5000 wake-ups: average 267.0 us, 99th percentile 3672.4 us, worst 6174.6 us
+rt     wake-up lateness over 5000 wake-ups: average 32.0 us, 99th percentile 78.4 us, worst 5090.5 us

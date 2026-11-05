@@ -1,0 +1,16 @@
+availability of one machine           : 99.602 %
+single server downtime per year        : 34.9 hours
+failures per year per machine          : 4.38
+cluster fail-over downtime per year    : 43.8 seconds
+cluster both-nodes-down per year       : 501 seconds
+cluster total downtime per year        : 544 seconds = 9.1 minutes
+cluster availability                   : 99.9983 %
+
+processors  speed-up (Amdahl, 5% serial)
+         1    1.00
+         2    1.90
+         4    3.48
+         8    5.93
+        16    9.14
+        32   12.55
+        64   15.42

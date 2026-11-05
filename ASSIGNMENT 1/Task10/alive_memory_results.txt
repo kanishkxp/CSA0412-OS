@@ -1,0 +1,6 @@
+1000 processes: per process VmSize 2692 kB, VmRSS 292 kB, Pss 28.0 kB
+1000 threads: per thread VmSize +8196 kB, VmRSS +8.6 kB, Pss +8.4 kB
+1000 processes: per process VmSize 2692 kB, VmRSS 292 kB, Pss 32.0 kB
+1000 threads: per thread VmSize +8196 kB, VmRSS +8.6 kB, Pss +8.4 kB
+1000 processes: per process VmSize 2692 kB, VmRSS 292 kB, Pss 28.0 kB
+1000 threads: per thread VmSize +8196 kB, VmRSS +8.6 kB, Pss +8.4 kB

@@ -1,0 +1,22 @@
+11820 execve("./shell_jobs", ["./shell_jobs"], 0x7ffd9f0a7398 /* 21 vars */) = 0
+11820 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f434c52ca10) = 11821
+11820 wait4(11821,  <unfinished ...>
+11821 execve("/home/claude/.npm-global/bin/expr", ["expr", "6", "*", "7"], 0x7ffd0fb9ea68 /* 21 vars */) = -1 ENOENT (No such file or directory)
+11821 execve("/home/claude/.local/bin/expr", ["expr", "6", "*", "7"], 0x7ffd0fb9ea68 /* 21 vars */) = -1 ENOENT (No such file or directory)
+11821 execve("/root/.local/bin/expr", ["expr", "6", "*", "7"], 0x7ffd0fb9ea68 /* 21 vars */) = -1 ENOENT (No such file or directory)
+11821 execve("/usr/local/sbin/expr", ["expr", "6", "*", "7"], 0x7ffd0fb9ea68 /* 21 vars */) = -1 ENOENT (No such file or directory)
+11821 execve("/usr/local/bin/expr", ["expr", "6", "*", "7"], 0x7ffd0fb9ea68 /* 21 vars */) = -1 ENOENT (No such file or directory)
+11821 execve("/usr/sbin/expr", ["expr", "6", "*", "7"], 0x7ffd0fb9ea68 /* 21 vars */) = -1 ENOENT (No such file or directory)
+11821 execve("/usr/bin/expr", ["expr", "6", "*", "7"], 0x7ffd0fb9ea68 /* 21 vars */) = 0
+11821 exit_group(0)                     = ?
+11821 +++ exited with 0 +++
+11820 <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 11821
+11820 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=11821, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+11820 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f434c52ca10) = 11822
+11820 wait4(11822,  <unfinished ...>
+11822 exit_group(3)                     = ?
+11822 +++ exited with 3 +++
+11820 <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 3}], 0, NULL) = 11822
+11820 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=11822, si_uid=0, si_status=3, si_utime=0, si_stime=0} ---
+11820 exit_group(0)                     = ?
+11820 +++ exited with 0 +++

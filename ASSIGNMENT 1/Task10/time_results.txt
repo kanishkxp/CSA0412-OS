@@ -1,0 +1,33 @@
+##### run 1
+--- buffer 1 bytes (4 MB file)
+real 2.538s   user 0.517s   sys 1.996s
+--- buffer 64 bytes (4 MB file)
+real 0.042s   user 0.008s   sys 0.034s
+--- buffer 512 bytes (4 MB file)
+real 0.014s   user 0.000s   sys 0.009s
+--- buffer 4096 bytes (4 MB file)
+real 0.007s   user 0.000s   sys 0.004s
+--- buffer 65536 bytes (4 MB file)
+real 0.011s   user 0.004s   sys 0.000s
+##### run 2
+--- buffer 1 bytes (4 MB file)
+real 2.485s   user 0.502s   sys 1.967s
+--- buffer 64 bytes (4 MB file)
+real 0.040s   user 0.008s   sys 0.032s
+--- buffer 512 bytes (4 MB file)
+real 0.014s   user 0.000s   sys 0.009s
+--- buffer 4096 bytes (4 MB file)
+real 0.007s   user 0.004s   sys 0.000s
+--- buffer 65536 bytes (4 MB file)
+real 0.007s   user 0.003s   sys 0.000s
+##### run 3
+--- buffer 1 bytes (4 MB file)
+real 2.454s   user 0.502s   sys 1.925s
+--- buffer 64 bytes (4 MB file)
+real 0.038s   user 0.000s   sys 0.038s
+--- buffer 512 bytes (4 MB file)
+real 0.013s   user 0.000s   sys 0.009s
+--- buffer 4096 bytes (4 MB file)
+real 0.007s   user 0.004s   sys 0.000s
+--- buffer 65536 bytes (4 MB file)
+real 0.008s   user 0.003s   sys 0.000s

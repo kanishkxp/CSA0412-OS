@@ -1,0 +1,9 @@
+user mode: trying the privileged instruction cli ...
+caught SIGSEGV: the CPU refused the access and the kernel killed the program
+(exit status 11)
+user mode: reading kernel address 0xffffffff81000000 ...
+caught SIGSEGV: the CPU refused the access and the kernel killed the program
+(exit status 11)
+user mode: reading address 0 ...
+caught SIGSEGV: the CPU refused the access and the kernel killed the program
+(exit status 11)

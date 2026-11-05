@@ -1,0 +1,15 @@
+N=1000 heap=0MB  processes: 0.1000 s (100.0 us each)  threads: 0.0311 s (31.1 us each)  ratio=3.2
+N=1000 heap=0MB  processes: 0.0930 s (93.0 us each)  threads: 0.0205 s (20.5 us each)  ratio=4.5
+N=1000 heap=0MB  processes: 0.0900 s (90.0 us each)  threads: 0.0215 s (21.5 us each)  ratio=4.2
+N=1000 heap=0MB  processes: 0.0897 s (89.7 us each)  threads: 0.0141 s (14.1 us each)  ratio=6.4
+N=1000 heap=0MB  processes: 0.0680 s (68.0 us each)  threads: 0.0120 s (12.0 us each)  ratio=5.7
+N=1000 heap=100MB  processes: 1.2122 s (1212.2 us each)  threads: 0.0134 s (13.4 us each)  ratio=90.4
+N=1000 heap=100MB  processes: 1.4998 s (1499.8 us each)  threads: 0.0146 s (14.6 us each)  ratio=102.9
+N=1000 heap=100MB  processes: 1.6964 s (1696.4 us each)  threads: 0.0158 s (15.8 us each)  ratio=107.6
+N=1000 heap=100MB  processes: 1.4602 s (1460.2 us each)  threads: 0.0178 s (17.8 us each)  ratio=82.0
+N=1000 heap=100MB  processes: 1.3776 s (1377.6 us each)  threads: 0.0101 s (10.1 us each)  ratio=136.7
+N=1000 heap=400MB  processes: 4.5328 s (4532.8 us each)  threads: 0.0143 s (14.3 us each)  ratio=317.0
+N=1000 heap=400MB  processes: 4.2356 s (4235.6 us each)  threads: 0.0100 s (10.0 us each)  ratio=423.5
+N=1000 heap=400MB  processes: 4.7178 s (4717.8 us each)  threads: 0.0092 s (9.2 us each)  ratio=515.0
+N=1000 heap=400MB  processes: 4.1488 s (4148.8 us each)  threads: 0.0148 s (14.8 us each)  ratio=280.5
+N=1000 heap=400MB  processes: 4.6747 s (4674.7 us each)  threads: 0.0168 s (16.8 us each)  ratio=278.9

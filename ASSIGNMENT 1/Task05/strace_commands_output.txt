@@ -1,0 +1,36 @@
+patient 101: heart rate normal
+--- only the file related calls of hello_write:
+close(3)                                = 0
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+close(3)                                = 0
+openat(AT_FDCWD, "patient.txt", O_WRONLY|O_CREAT|O_TRUNC, 0644) = 3
+write(3, "patient 101: heart rate normal\n", 31) = 31
+close(3)                                = 0
+openat(AT_FDCWD, "patient.txt", O_RDONLY) = 3
+read(3, "patient 101: heart rate normal\n", 64) = 31
+close(3)                                = 0
+write(1, "patient 101: heart rate normal\n", 31) = 31
+unlink("patient.txt")                   = 0
+exit_group(0)                           = ?
+--- system call summary of 'ls /':
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  0.00    0.000000           0         8           read
+  0.00    0.000000           0         1           write
+  0.00    0.000000           0         9           close
+  0.00    0.000000           0         8           fstat
+  0.00    0.000000           0        17           mmap
+  0.00    0.000000           0         5           mprotect
+  0.00    0.000000           0         1           munmap
+  0.00    0.000000           0         3           brk
+  0.00    0.000000           0         2         2 ioctl
+  0.00    0.000000           0         2           pread64
+--- the read() of 'cat' on a small file, with timestamps and durations:
+read(3, "hello hospital\n", 131072)     = 15 <0.000010>
+write(1, "hello hospital\n", 15hello hospital
+)        = 15 <0.000007>
+read(3, "", 131072)                     = 0 <0.000004>
+close(3)                                = 0 <0.000005>
+close(1)                                = 0 <0.000004>
+close(2)                                = 0 <0.000004>
++++ exited with 0 +++

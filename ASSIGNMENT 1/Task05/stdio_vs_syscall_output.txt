@@ -1,0 +1,32 @@
+$ strace -c -e trace=read,write ./stdio_vs_syscall sys f256k.dat out.dat 1
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 52.80    0.295838           1    262144           write
+ 47.20    0.264410           1    262146           read
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.560248           1    524290           total
+
+$ strace -c -e trace=read,write ./stdio_vs_syscall sys f256k.dat out.dat 4096
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  0.00    0.000000           0        66           read
+  0.00    0.000000           0        64           write
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000000           0       130           total
+
+$ strace -c -e trace=read,write ./stdio_vs_syscall stdio f256k.dat out.dat 1
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  0.00    0.000000           0        66           read
+  0.00    0.000000           0        64           write
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000000           0       130           total
+
+$ strace -c -e trace=read,write ./stdio_vs_syscall stdio f256k.dat out.dat 4096
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 74.86    0.000137           2        64           write
+ 25.14    0.000046           0        66           read
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000183           1       130           total
+

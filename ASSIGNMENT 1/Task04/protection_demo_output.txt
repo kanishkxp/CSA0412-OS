@@ -1,0 +1,9 @@
+-rw------- 1 root root 36 Nov  4 07:07 record101.txt
+--- owner reads the record:
+patient 101: diagnosis confidential
+--- another user (uid 65534, 'nobody') tries to read it:
+cat: record101.txt: Permission denied
+exit status: 1
+--- the same user tries to read it with strace to see the failing system call:
+openat(AT_FDCWD, "record101.txt", O_RDONLY) = -1 EACCES (Permission denied)
+cat: record101.txt: Permission denied
