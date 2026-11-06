@@ -1,0 +1,2 @@
+runs with sum = 210 : 100
+runs with wrong sum : 0

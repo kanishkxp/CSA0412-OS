@@ -1,0 +1,28 @@
+dataset,algorithm,process,start,end
+set1,FCFS,P1,0,8
+set1,FCFS,P2,8,12
+set1,FCFS,P3,12,21
+set1,FCFS,P4,21,26
+set1,SJF (non-preemptive),P1,0,8
+set1,SJF (non-preemptive),P2,8,12
+set1,SJF (non-preemptive),P4,12,17
+set1,SJF (non-preemptive),P3,17,26
+set1,SRTF (preemptive SJF),P1,0,1
+set1,SRTF (preemptive SJF),P2,1,5
+set1,SRTF (preemptive SJF),P4,5,10
+set1,SRTF (preemptive SJF),P1,10,17
+set1,SRTF (preemptive SJF),P3,17,26
+set1,Priority (non-preemptive),P1,0,8
+set1,Priority (non-preemptive),P3,8,17
+set1,Priority (non-preemptive),P2,17,21
+set1,Priority (non-preemptive),P4,21,26
+set1,Round Robin,P1,0,3
+set1,Round Robin,P2,3,6
+set1,Round Robin,P3,6,9
+set1,Round Robin,P4,9,12
+set1,Round Robin,P1,12,15
+set1,Round Robin,P2,15,16
+set1,Round Robin,P3,16,19
+set1,Round Robin,P4,19,21
+set1,Round Robin,P1,21,23
+set1,Round Robin,P3,23,26

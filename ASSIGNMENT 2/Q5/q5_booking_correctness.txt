@@ -1,0 +1,6 @@
+none   threads=4  hot=0 % ops=800000   time=  0.064 s  throughput= 12502776 ops/s   booked-cancelled=172 occupied=5  -> INCONSISTENT (seats sold twice / lost)
+none   threads=4  hot=0 % ops=800000   time=  0.061 s  throughput= 13072203 ops/s   booked-cancelled=392 occupied=4  -> INCONSISTENT (seats sold twice / lost)
+none   threads=4  hot=0 % ops=800000   time=  0.061 s  throughput= 13201613 ops/s   booked-cancelled=-404 occupied=3  -> INCONSISTENT (seats sold twice / lost)
+global threads=4  hot=0 % ops=800000   time=  0.153 s  throughput=  5217107 ops/s   booked-cancelled=8 occupied=8  -> consistent
+global threads=4  hot=0 % ops=800000   time=  0.167 s  throughput=  4777266 ops/s   booked-cancelled=8 occupied=8  -> consistent
+global threads=4  hot=0 % ops=800000   time=  0.150 s  throughput=  5344413 ops/s   booked-cancelled=8 occupied=8  -> consistent

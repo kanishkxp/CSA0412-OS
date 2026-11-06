@@ -1,0 +1,74 @@
+=== hot = 0 % (share of requests to train 0) ===
+global threads=1  hot=0 % ops=400000   time=  0.565 s  throughput=   707743 ops/s   booked-cancelled=4594 occupied=4594  -> consistent
+global threads=1  hot=0 % ops=400000   time=  0.645 s  throughput=   619757 ops/s   booked-cancelled=4594 occupied=4594  -> consistent
+global threads=1  hot=0 % ops=400000   time=  0.479 s  throughput=   835375 ops/s   booked-cancelled=4594 occupied=4594  -> consistent
+train  threads=1  hot=0 % ops=400000   time=  0.588 s  throughput=   679771 ops/s   booked-cancelled=4594 occupied=4594  -> consistent
+train  threads=1  hot=0 % ops=400000   time=  0.572 s  throughput=   698967 ops/s   booked-cancelled=4594 occupied=4594  -> consistent
+train  threads=1  hot=0 % ops=400000   time=  0.576 s  throughput=   694653 ops/s   booked-cancelled=4594 occupied=4594  -> consistent
+coach  threads=1  hot=0 % ops=400000   time=  0.727 s  throughput=   550366 ops/s   booked-cancelled=4594 occupied=4594  -> consistent
+coach  threads=1  hot=0 % ops=400000   time=  0.718 s  throughput=   556831 ops/s   booked-cancelled=4594 occupied=4594  -> consistent
+coach  threads=1  hot=0 % ops=400000   time=  0.699 s  throughput=   572616 ops/s   booked-cancelled=4594 occupied=4594  -> consistent
+global threads=2  hot=0 % ops=400000   time=  1.931 s  throughput=   207165 ops/s   booked-cancelled=4634 occupied=4634  -> consistent
+global threads=2  hot=0 % ops=400000   time=  1.782 s  throughput=   224480 ops/s   booked-cancelled=4634 occupied=4634  -> consistent
+global threads=2  hot=0 % ops=400000   time=  1.720 s  throughput=   232595 ops/s   booked-cancelled=4634 occupied=4634  -> consistent
+train  threads=2  hot=0 % ops=400000   time=  0.520 s  throughput=   768867 ops/s   booked-cancelled=4634 occupied=4634  -> consistent
+train  threads=2  hot=0 % ops=400000   time=  0.509 s  throughput=   785657 ops/s   booked-cancelled=4634 occupied=4634  -> consistent
+train  threads=2  hot=0 % ops=400000   time=  0.525 s  throughput=   761745 ops/s   booked-cancelled=4634 occupied=4634  -> consistent
+coach  threads=2  hot=0 % ops=400000   time=  0.307 s  throughput=  1303425 ops/s   booked-cancelled=4634 occupied=4634  -> consistent
+coach  threads=2  hot=0 % ops=400000   time=  0.307 s  throughput=  1304002 ops/s   booked-cancelled=4634 occupied=4634  -> consistent
+coach  threads=2  hot=0 % ops=400000   time=  0.324 s  throughput=  1233374 ops/s   booked-cancelled=4634 occupied=4634  -> consistent
+global threads=4  hot=0 % ops=400000   time=  0.942 s  throughput=   424518 ops/s   booked-cancelled=4622 occupied=4622  -> consistent
+global threads=4  hot=0 % ops=400000   time=  0.853 s  throughput=   468965 ops/s   booked-cancelled=4622 occupied=4622  -> consistent
+global threads=4  hot=0 % ops=400000   time=  0.910 s  throughput=   439801 ops/s   booked-cancelled=4622 occupied=4622  -> consistent
+train  threads=4  hot=0 % ops=400000   time=  0.501 s  throughput=   798624 ops/s   booked-cancelled=4622 occupied=4622  -> consistent
+train  threads=4  hot=0 % ops=400000   time=  0.486 s  throughput=   822780 ops/s   booked-cancelled=4622 occupied=4622  -> consistent
+train  threads=4  hot=0 % ops=400000   time=  0.498 s  throughput=   803011 ops/s   booked-cancelled=4622 occupied=4622  -> consistent
+coach  threads=4  hot=0 % ops=400000   time=  0.305 s  throughput=  1311520 ops/s   booked-cancelled=4622 occupied=4622  -> consistent
+coach  threads=4  hot=0 % ops=400000   time=  0.304 s  throughput=  1314621 ops/s   booked-cancelled=4622 occupied=4622  -> consistent
+coach  threads=4  hot=0 % ops=400000   time=  0.283 s  throughput=  1413640 ops/s   booked-cancelled=4622 occupied=4622  -> consistent
+global threads=8  hot=0 % ops=400000   time=  0.698 s  throughput=   572942 ops/s   booked-cancelled=4642 occupied=4642  -> consistent
+global threads=8  hot=0 % ops=400000   time=  0.717 s  throughput=   557730 ops/s   booked-cancelled=4642 occupied=4642  -> consistent
+global threads=8  hot=0 % ops=400000   time=  0.711 s  throughput=   562586 ops/s   booked-cancelled=4642 occupied=4642  -> consistent
+train  threads=8  hot=0 % ops=400000   time=  0.351 s  throughput=  1138654 ops/s   booked-cancelled=4642 occupied=4642  -> consistent
+train  threads=8  hot=0 % ops=400000   time=  0.360 s  throughput=  1110668 ops/s   booked-cancelled=4642 occupied=4642  -> consistent
+train  threads=8  hot=0 % ops=400000   time=  0.371 s  throughput=  1078413 ops/s   booked-cancelled=4642 occupied=4642  -> consistent
+coach  threads=8  hot=0 % ops=400000   time=  0.270 s  throughput=  1479832 ops/s   booked-cancelled=4642 occupied=4642  -> consistent
+coach  threads=8  hot=0 % ops=400000   time=  0.283 s  throughput=  1412902 ops/s   booked-cancelled=4642 occupied=4642  -> consistent
+coach  threads=8  hot=0 % ops=400000   time=  0.282 s  throughput=  1418695 ops/s   booked-cancelled=4642 occupied=4642  -> consistent
+=== hot = 70 % (share of requests to train 0) ===
+global threads=1  hot=70% ops=400000   time=  0.557 s  throughput=   717608 ops/s   booked-cancelled=4598 occupied=4598  -> consistent
+global threads=1  hot=70% ops=400000   time=  0.605 s  throughput=   660699 ops/s   booked-cancelled=4598 occupied=4598  -> consistent
+global threads=1  hot=70% ops=400000   time=  0.479 s  throughput=   835618 ops/s   booked-cancelled=4598 occupied=4598  -> consistent
+train  threads=1  hot=70% ops=400000   time=  0.601 s  throughput=   665588 ops/s   booked-cancelled=4598 occupied=4598  -> consistent
+train  threads=1  hot=70% ops=400000   time=  0.614 s  throughput=   651420 ops/s   booked-cancelled=4598 occupied=4598  -> consistent
+train  threads=1  hot=70% ops=400000   time=  0.582 s  throughput=   687856 ops/s   booked-cancelled=4598 occupied=4598  -> consistent
+coach  threads=1  hot=70% ops=400000   time=  0.476 s  throughput=   840400 ops/s   booked-cancelled=4598 occupied=4598  -> consistent
+coach  threads=1  hot=70% ops=400000   time=  0.638 s  throughput=   627253 ops/s   booked-cancelled=4598 occupied=4598  -> consistent
+coach  threads=1  hot=70% ops=400000   time=  0.623 s  throughput=   642331 ops/s   booked-cancelled=4598 occupied=4598  -> consistent
+global threads=2  hot=70% ops=400000   time=  1.804 s  throughput=   221685 ops/s   booked-cancelled=4708 occupied=4708  -> consistent
+global threads=2  hot=70% ops=400000   time=  1.669 s  throughput=   239663 ops/s   booked-cancelled=4708 occupied=4708  -> consistent
+global threads=2  hot=70% ops=400000   time=  1.821 s  throughput=   219628 ops/s   booked-cancelled=4708 occupied=4708  -> consistent
+train  threads=2  hot=70% ops=400000   time=  1.524 s  throughput=   262392 ops/s   booked-cancelled=4708 occupied=4708  -> consistent
+train  threads=2  hot=70% ops=400000   time=  1.546 s  throughput=   258721 ops/s   booked-cancelled=4708 occupied=4708  -> consistent
+train  threads=2  hot=70% ops=400000   time=  1.582 s  throughput=   252864 ops/s   booked-cancelled=4708 occupied=4708  -> consistent
+coach  threads=2  hot=70% ops=400000   time=  0.527 s  throughput=   758412 ops/s   booked-cancelled=4708 occupied=4708  -> consistent
+coach  threads=2  hot=70% ops=400000   time=  0.525 s  throughput=   761227 ops/s   booked-cancelled=4708 occupied=4708  -> consistent
+coach  threads=2  hot=70% ops=400000   time=  0.551 s  throughput=   725691 ops/s   booked-cancelled=4708 occupied=4708  -> consistent
+global threads=4  hot=70% ops=400000   time=  0.865 s  throughput=   462351 ops/s   booked-cancelled=4732 occupied=4732  -> consistent
+global threads=4  hot=70% ops=400000   time=  0.912 s  throughput=   438440 ops/s   booked-cancelled=4732 occupied=4732  -> consistent
+global threads=4  hot=70% ops=400000   time=  0.855 s  throughput=   467571 ops/s   booked-cancelled=4732 occupied=4732  -> consistent
+train  threads=4  hot=70% ops=400000   time=  0.756 s  throughput=   529391 ops/s   booked-cancelled=4732 occupied=4732  -> consistent
+train  threads=4  hot=70% ops=400000   time=  0.685 s  throughput=   584080 ops/s   booked-cancelled=4732 occupied=4732  -> consistent
+train  threads=4  hot=70% ops=400000   time=  0.761 s  throughput=   525937 ops/s   booked-cancelled=4732 occupied=4732  -> consistent
+coach  threads=4  hot=70% ops=400000   time=  0.492 s  throughput=   812501 ops/s   booked-cancelled=4732 occupied=4732  -> consistent
+coach  threads=4  hot=70% ops=400000   time=  0.487 s  throughput=   821987 ops/s   booked-cancelled=4732 occupied=4732  -> consistent
+coach  threads=4  hot=70% ops=400000   time=  0.497 s  throughput=   805201 ops/s   booked-cancelled=4732 occupied=4732  -> consistent
+global threads=8  hot=70% ops=400000   time=  0.700 s  throughput=   571260 ops/s   booked-cancelled=4632 occupied=4632  -> consistent
+global threads=8  hot=70% ops=400000   time=  0.714 s  throughput=   560282 ops/s   booked-cancelled=4632 occupied=4632  -> consistent
+global threads=8  hot=70% ops=400000   time=  0.768 s  throughput=   520878 ops/s   booked-cancelled=4632 occupied=4632  -> consistent
+train  threads=8  hot=70% ops=400000   time=  0.616 s  throughput=   649148 ops/s   booked-cancelled=4632 occupied=4632  -> consistent
+train  threads=8  hot=70% ops=400000   time=  0.654 s  throughput=   611525 ops/s   booked-cancelled=4632 occupied=4632  -> consistent
+train  threads=8  hot=70% ops=400000   time=  0.666 s  throughput=   600382 ops/s   booked-cancelled=4632 occupied=4632  -> consistent
+coach  threads=8  hot=70% ops=400000   time=  0.408 s  throughput=   979784 ops/s   booked-cancelled=4632 occupied=4632  -> consistent
+coach  threads=8  hot=70% ops=400000   time=  0.388 s  throughput=  1029793 ops/s   booked-cancelled=4632 occupied=4632  -> consistent
+coach  threads=8  hot=70% ops=400000   time=  0.404 s  throughput=   990351 ops/s   booked-cancelled=4632 occupied=4632  -> consistent

@@ -1,0 +1,20 @@
+== Safety algorithm, m = 3 resource types ==
+     n  worst case (us)   best case (us) worst/n^2 (ns)
+    10             0.19             0.06         1.93
+   100            15.82             0.48         1.58   (x81.9 from previous row)
+  1000          1230.85             4.42         1.23   (x77.8 from previous row)
+  2000          4862.40             8.90         1.22   (x4.0 from previous row)
+
+== Safety algorithm, n = 500, worst case, growing number of resource types m ==
+     m        time (us)
+     2           276.16
+     4           423.89
+     8           887.86
+    16          1539.32
+    32          3063.76
+
+== Cost of ONE resource request, m = 3, worst-case layout (chain), grows with n ==
+     n     with Banker's (us)     without check (us)
+    10                  0.188                  0.007
+   100                 14.611                  0.006
+  1000               1230.927                  0.013

@@ -1,0 +1,6 @@
+process : 200000 round trips in 524.6 ms -> 1.31 us per context switch
+thread  : 200000 round trips in 521.8 ms -> 1.30 us per context switch
+process : 200000 round trips in 550.6 ms -> 1.38 us per context switch
+thread  : 200000 round trips in 527.8 ms -> 1.32 us per context switch
+process : 200000 round trips in 668.4 ms -> 1.67 us per context switch
+thread  : 200000 round trips in 556.5 ms -> 1.39 us per context switch

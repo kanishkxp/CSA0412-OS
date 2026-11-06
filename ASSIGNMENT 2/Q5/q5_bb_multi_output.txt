@@ -1,0 +1,33 @@
+##### with mutex (3 runs each) #####
+with mutex producers=1 consumers=1 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=1 consumers=1 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=1 consumers=1 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=4 consumers=4 items=20000  lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=4 consumers=4 items=20000  lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=4 consumers=4 items=20000  lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=1 consumers=4 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=1 consumers=4 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=1 consumers=4 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=4 consumers=1 items=20000  lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=4 consumers=1 items=20000  lost=0     duplicated=0     -> every item consumed exactly once
+with mutex producers=4 consumers=1 items=20000  lost=0     duplicated=0     -> every item consumed exactly once
+
+##### without mutex (3 runs each) #####
+no mutex   producers=1 consumers=1 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+no mutex   producers=1 consumers=1 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+no mutex   producers=1 consumers=1 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+no mutex   producers=4 consumers=4 items=20000  lost=1566  duplicated=1566  -> WRONG
+   (exit status 2)
+no mutex   producers=4 consumers=4 items=20000  lost=527   duplicated=527   -> WRONG
+   (exit status 2)
+no mutex   producers=4 consumers=4 items=20000  lost=1013  duplicated=1013  -> WRONG
+   (exit status 2)
+no mutex   producers=1 consumers=4 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+no mutex   producers=1 consumers=4 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+no mutex   producers=1 consumers=4 items=5000   lost=0     duplicated=0     -> every item consumed exactly once
+no mutex   producers=4 consumers=1 items=20000  lost=306   duplicated=306   -> WRONG
+   (exit status 2)
+no mutex   producers=4 consumers=1 items=20000  lost=293   duplicated=293   -> WRONG
+   (exit status 2)
+no mutex   producers=4 consumers=1 items=20000  lost=665   duplicated=665   -> WRONG
+   (exit status 2)

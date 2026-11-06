@@ -1,0 +1,4 @@
+expected value      : 10000000
+no protection       : 6382381  (lost 3617619 updates)  0.021 s
+mutex               : 10000000  (lost 0 updates)  0.752 s
+atomic_fetch_add    : 10000000  (lost 0 updates)  0.129 s

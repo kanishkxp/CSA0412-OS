@@ -1,0 +1,19 @@
+main  : pid=7301
+
+thread 3: pid=7301 tid=7305
+          &global_counter = 0x5628abc0d010   (same for all -> shared)
+          heap_block      = 0x5628e70e12a0   (same for all -> shared)
+          &local          = 0x7f77839fcea0   (different -> own stack)
+          &tls_value      = 0x7f77839fd6bc   (different -> own copy), value = 3000
+thread 1: pid=7301 tid=7303
+          &global_counter = 0x5628abc0d010   (same for all -> shared)
+          heap_block      = 0x5628e70e12a0   (same for all -> shared)
+          &local          = 0x7f77849feea0   (different -> own stack)
+          &tls_value      = 0x7f77849ff6bc   (different -> own copy), value = 1000
+thread 2: pid=7301 tid=7304
+          &global_counter = 0x5628abc0d010   (same for all -> shared)
+          heap_block      = 0x5628e70e12a0   (same for all -> shared)
+          &local          = 0x7f77841fdea0   (different -> own stack)
+          &tls_value      = 0x7f77841fe6bc   (different -> own copy), value = 2000
+
+main thread still sees tls_value = 0 (its own copy was never changed)

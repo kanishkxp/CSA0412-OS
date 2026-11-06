@@ -1,0 +1,2 @@
+--- running without close(fd[1]) in the parent, killed after 5 seconds ---
+exit status of timeout = 124 (124 means the program was still blocked and had to be killed)

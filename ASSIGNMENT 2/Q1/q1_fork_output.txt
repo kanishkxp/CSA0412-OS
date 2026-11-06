@@ -1,0 +1,41 @@
+parent pid = 274
+
+--- ps output while children are alive ---
+  PID  PPID STAT WCHAN        COMMAND
+  276   274 R    -            q1_fork
+  277   274 S    hrtimer_nano q1_fork
+  278   274 S    hrtimer_nano q1_fork
+  279   274 S    hrtimer_nano q1_fork
+  280   274 S    do_wait      sh
+
+--- /proc/276/status (child 0, busy) ---
+Name:	q1_fork
+State:	R (running)
+Pid:	276
+PPid:	274
+VmRSS:	     316 kB
+VmStk:	     152 kB
+voluntary_ctxt_switches:	0
+nonvoluntary_ctxt_switches:	15
+
+--- /proc/277/status (child 1, sleeping) ---
+Name:	q1_fork
+State:	S (sleeping)
+Pid:	277
+PPid:	274
+VmRSS:	     312 kB
+VmStk:	     152 kB
+voluntary_ctxt_switches:	1
+nonvoluntary_ctxt_switches:	0
+
+--- ps output after children exited, before wait() (zombies = Z) ---
+  PID  PPID STAT WCHAN        COMMAND
+  276   274 Z    -            q1_fork
+  277   274 Z    -            q1_fork
+  278   274 Z    -            q1_fork
+  279   274 Z    -            q1_fork
+  282   274 S    do_wait      sh
+child 0 (pid 276) terminated with exit code 0
+child 1 (pid 277) terminated with exit code 1
+child 2 (pid 278) terminated with exit code 2
+child 3 (pid 279) terminated with exit code 3

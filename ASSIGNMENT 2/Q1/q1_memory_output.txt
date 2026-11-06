@@ -1,0 +1,2 @@
+process x 2000 : memory used = 737292 KB total, 368.6 KB per session
+thread x 2000 : memory used = 555412 KB total, 277.7 KB per session
