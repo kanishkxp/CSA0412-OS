@@ -1,0 +1,44 @@
+
+--- Scenario 1: three tasks, real-time task LOCKED ---
+pages needed in total: 425984 (1664 MB), frames available: 458752 (1792 MB), pages that can never be reclaimed: 118784 (464 MB)
+task       pages   references  page faults   fault rate
+RT         25600       160000            0      0.0000%
+ML-w      307200      4000000            0      0.0000%
+ML-a       76800       800000            0      0.0000%
+LOG        16384        80000            0      0.0000%
+
+--- Scenario 2: FOUR tasks (500 MB added), real-time task NOT locked (data is file-backed, so reclaimable) ---
+pages needed in total: 553984 (2164 MB), frames available: 458752 (1792 MB), pages that can never be reclaimed: 221184 (864 MB)
+task       pages   references  page faults   fault rate
+RT         25600       160000       111680     69.8000%
+ML-w      307200      4000000      4000000    100.0000%
+ML-a       76800       800000            0      0.0000%
+LOG        16384        80000            0      0.0000%
+NEW       128000      2000000            0      0.0000%
+
+--- Scenario 3: FOUR tasks, real-time task LOCKED ---
+pages needed in total: 553984 (2164 MB), frames available: 458752 (1792 MB), pages that can never be reclaimed: 246784 (964 MB)
+task       pages   references  page faults   fault rate
+RT         25600       160000            0      0.0000%
+ML-w      307200      4000000      4000000    100.0000%
+ML-a       76800       800000            0      0.0000%
+LOG        16384        80000            0      0.0000%
+NEW       128000      2000000            0      0.0000%
+
+--- Scenario 4: FOUR tasks, RT LOCKED, ML model reduced to 1.0 GB (700 MB weights + 300 MB activations) ---
+pages needed in total: 425984 (1664 MB), frames available: 458752 (1792 MB), pages that can never be reclaimed: 246784 (964 MB)
+task       pages   references  page faults   fault rate
+RT         25600       160000            0      0.0000%
+ML-w      179200      4000000            0      0.0000%
+ML-a       76800       800000            0      0.0000%
+LOG        16384        80000            0      0.0000%
+NEW       128000      2000000            0      0.0000%
+
+--- Scenario 5 (limit test): a 1.1 GB fourth task instead of 500 MB, RT LOCKED ---
+pages needed in total: 707584 (2764 MB), frames available: 458752 (1792 MB), pages that can never be reclaimed: 400384 (1564 MB)
+task       pages   references  page faults   fault rate
+RT         25600       160000            0      0.0000%
+ML-w      307200      4000000      4000000    100.0000%
+ML-a       76800       800000            0      0.0000%
+LOG        16384        80000            0      0.0000%
+NEW       281600      2000000            0      0.0000%

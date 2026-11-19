@@ -1,0 +1,36 @@
+mode: UNLOCKED (ordinary pageable memory)
+iterations 20000, memory pressure every 1000 iterations
+loop time per iteration: mean 329.38 us | median 318.33 us | 99.9% 2169.03 us | WORST CASE 16191.12 us
+iterations slower than 1 ms (a typical control deadline): 71
+page faults inside the loop: major 174730, minor 6141 | table pages resident at the end: 10617 of 16384
+
+mode: LOCKED   (mlockall(MCL_CURRENT|MCL_FUTURE), table pre-faulted)
+iterations 20000, memory pressure every 1000 iterations
+loop time per iteration: mean 0.27 us | median 0.22 us | 99.9% 0.83 us | WORST CASE 44.00 us
+iterations slower than 1 ms (a typical control deadline): 0
+page faults inside the loop: major 0, minor 1 | table pages resident at the end: 16384 of 16384
+-----
+mode: UNLOCKED (ordinary pageable memory)
+iterations 20000, memory pressure every 1000 iterations
+loop time per iteration: mean 329.30 us | median 319.75 us | 99.9% 2381.51 us | WORST CASE 24799.13 us
+iterations slower than 1 ms (a typical control deadline): 80
+page faults inside the loop: major 174805, minor 6107 | table pages resident at the end: 10564 of 16384
+
+mode: LOCKED   (mlockall(MCL_CURRENT|MCL_FUTURE), table pre-faulted)
+iterations 20000, memory pressure every 1000 iterations
+loop time per iteration: mean 0.29 us | median 0.22 us | 99.9% 0.89 us | WORST CASE 59.16 us
+iterations slower than 1 ms (a typical control deadline): 0
+page faults inside the loop: major 0, minor 1 | table pages resident at the end: 16384 of 16384
+-----
+mode: UNLOCKED (ordinary pageable memory)
+iterations 20000, memory pressure every 1000 iterations
+loop time per iteration: mean 348.93 us | median 336.45 us | 99.9% 1769.53 us | WORST CASE 11046.25 us
+iterations slower than 1 ms (a typical control deadline): 66
+page faults inside the loop: major 174686, minor 6113 | table pages resident at the end: 10608 of 16384
+
+mode: LOCKED   (mlockall(MCL_CURRENT|MCL_FUTURE), table pre-faulted)
+iterations 20000, memory pressure every 1000 iterations
+loop time per iteration: mean 0.28 us | median 0.23 us | 99.9% 0.93 us | WORST CASE 41.02 us
+iterations slower than 1 ms (a typical control deadline): 0
+page faults inside the loop: major 0, minor 1 | table pages resident at the end: 16384 of 16384
+-----
