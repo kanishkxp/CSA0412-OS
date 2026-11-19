@@ -1,0 +1,101 @@
+$ ./seg_translate
+Segment table: seg  name   base limit perm
+               0    code   4000  1200  r-x
+               1    data   9000   800  rw-
+               2    heap   6000  2000  rw-
+               3    stack  2000   500  rw-
+
+--- 8 addresses (read unless marked w) ---
+(seg 0, offset    0, r) : code  base 4000 + offset    0 = physical 4000
+(seg 0, offset 1199, r) : code  base 4000 + offset 1199 = physical 5199
+(seg 1, offset  450, w) : data  base 9000 + offset  450 = physical 9450
+(seg 2, offset 1999, r) : heap  base 6000 + offset 1999 = physical 7999
+(seg 3, offset  499, w) : stack base 2000 + offset  499 = physical 2499
+(seg 0, offset  100, w) : TRAP - write to code  segment with permission r-x (protection fault)
+(seg 3, offset  500, r) : TRAP - offset 500 >= limit 500 of stack segment (addressing error)
+(seg 2, offset 2500, r) : TRAP - offset 2500 >= limit 2000 of heap  segment (addressing error)
+
+--- extra: bad segment number ---
+(seg 5, offset   10, r) : TRAP - invalid segment number
+
+$ ./segv_demo
+Test 1: write to NULL (page 0 is not mapped)
+  -> signal 11 (SIGSEGV) caught, si_addr=(nil), si_code=SEGV_MAPERR (no mapping)
+Test 2: write into a read-only page (like writing into the code segment)
+  read-only page mapped at 0x7f326557e000
+  -> signal 11 (SIGSEGV) caught, si_addr=0x7f326557e00a, si_code=SEGV_ACCERR (permission)
+Test 3: access just beyond the end of a mapping (like offset > limit)
+  mapping = [0x7f326557d000, 0x7f326557e000), accessing 0x7f326557e000
+  -> signal 11 (SIGSEGV) caught, si_addr=0x7f326557e000, si_code=SEGV_MAPERR (no mapping)
+program survived because the handler recovered; without a handler the kernel kills it.
+
+$ ./segv_demo crash   (no handler: default action of the kernel)
+about to write to address 0 with the default SIGSEGV action...
+./run_q3.sh: line 12:   299 Segmentation fault      ./segv_demo crash
+shell reports exit status = 139  (128 + 11 = SIGSEGV)
+
+$ ./seg_frag
+=== Part 1: one run (seed 11) ===
+after loading 20 segments            segments=20 holes= 1 free=3787 KB largest hole=3787 KB ext.frag=  0.0%
+   |####################################################################............................................................|  (# used, . free; 1 char = 64 KB)
+after removing 10 random segments    segments=10 holes= 5 free=6349 KB largest hole=3991 KB ext.frag= 37.1%
+   |####..............##............############.....####......######...............................................................|  (# used, . free; 1 char = 64 KB)
+   request  600 KB loaded
+   request  900 KB loaded
+   request 1200 KB loaded
+   request 1500 KB loaded
+   request 2000 KB FAILED: total free = 2149 KB (enough in total) but the largest hole is only 775 KB
+after the 5 new requests             segments=14 holes= 5 free=2149 KB largest hole= 775 KB ext.frag= 63.9%
+   |#############.....##............############.....####......##############################################################.......|  (# used, . free; 1 char = 64 KB)
+new segments loaded: 4 of 5
+
+=== Part 2: 1000 different seeds, load 20 / remove 10 ===
+average external fragmentation = 31.0 %, worst = 55.4 %, average number of holes = 6.0
+a 3000 KB request failed although enough memory was free in total: 14 of 1000 runs
+
+$ ./table_sizes
+Pure segmentation : 4 segments x (base 4 B + limit 4 B) = 32 bytes
+Pure paging       : only the used part, single-level, 4 B per entry = 113 entries = 452 bytes (full 2^20-entry table: 4 MB)
+Segmented paging  : 4 segment-table entries (8 B) + one small page table per segment:
+                     code  120 KB -> 30 pages -> 120 bytes
+                     data   80 KB -> 20 pages ->  80 bytes
+                     heap  200 KB -> 50 pages -> 200 bytes
+                     stack  50 KB -> 13 pages ->  52 bytes
+                     total = 484 bytes
+
+$ ./show_segments 3 &   then   cat /proc/<pid>/maps
+pid 302
+code  (main)               : 0x555cc2fbd140
+rodata                     : 0x555cc2fbe150
+data  (initialised global) : 0x555cc2fc0010
+bss   (uninit. global)     : 0x555cc2fc0024
+heap  (malloc 100 bytes)   : 0x555cf2b3e2b0
+heap  (malloc 1 MB)        : 0x555cf2a3e2a0
+mmap  (anonymous, 1 MB)    : 0x7fb771900000
+stack (local variable)     : 0x7ffd8a7e7d44
+
+555cc2fbc000-555cc2fbd000 r--p 00000000 fe:00 795093                     /home/claude/CSA04-192511278-Assignment3/Q3/show_segments
+555cc2fbd000-555cc2fbe000 r-xp 00001000 fe:00 795093                     /home/claude/CSA04-192511278-Assignment3/Q3/show_segments
+555cc2fbe000-555cc2fbf000 r--p 00002000 fe:00 795093                     /home/claude/CSA04-192511278-Assignment3/Q3/show_segments
+555cc2fbf000-555cc2fc0000 r--p 00002000 fe:00 795093                     /home/claude/CSA04-192511278-Assignment3/Q3/show_segments
+555cc2fc0000-555cc2fc1000 rw-p 00003000 fe:00 795093                     /home/claude/CSA04-192511278-Assignment3/Q3/show_segments
+555cf2a3e000-555cf2b5f000 rw-p 00000000 00:00 0                          [heap]
+7fb771900000-7fb771a00000 rw-p 00000000 00:00 0 
+7fb771a00000-7fb771a28000 r--p 00000000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7fb771a28000-7fb771bb1000 r-xp 00028000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7fb771bb1000-7fb771c00000 r--p 001b1000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7fb771c00000-7fb771c04000 r--p 001ff000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7fb771c04000-7fb771c06000 rw-p 00203000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7fb771c06000-7fb771c13000 rw-p 00000000 00:00 0 
+7fb771ca3000-7fb771ca6000 rw-p 00000000 00:00 0 
+7fb771cb4000-7fb771cb6000 rw-p 00000000 00:00 0 
+7fb771cb6000-7fb771cba000 r--p 00000000 00:00 0                          [vvar]
+7fb771cba000-7fb771cbc000 r--p 00000000 00:00 0                          [vvar_vclock]
+7fb771cbc000-7fb771cbe000 r-xp 00000000 00:00 0                          [vdso]
+7fb771cbe000-7fb771cbf000 r--p 00000000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fb771cbf000-7fb771cea000 r-xp 00001000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fb771cea000-7fb771cf4000 r--p 0002c000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fb771cf4000-7fb771cf6000 r--p 00036000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fb771cf6000-7fb771cf8000 rw-p 00038000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffd8a7c8000-7ffd8a7ee000 rw-p 00000000 00:00 0                          [stack]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]

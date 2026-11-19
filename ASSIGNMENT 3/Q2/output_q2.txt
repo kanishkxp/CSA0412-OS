@@ -1,0 +1,75 @@
+$ ./boundary_test
+    0 (first byte of page 0      ) -> page 0 offset    0 : physical 5120
+ 1023 (last byte of page 0       ) -> page 0 offset 1023 : physical 6143
+ 1024 (first byte of page 1      ) -> page 1 offset    0 : physical 2048
+ 3072 (first byte of page 3      ) -> page 3 offset    0 : physical 7168
+ 4095 (last byte of page 3       ) -> page 3 offset 1023 : physical 8191
+ 8191 (last byte of last page 7  ) -> page 7 offset 1023 : page fault (valid page, not in memory)
+ 8192 (first byte after last page) -> page 8 offset    0 : invalid address (beyond the last page - trap to OS)
+100000 (far beyond the table      ) -> page 97 offset  672 : invalid address (beyond the last page - trap to OS)
+
+$ ./calc_q2
+=== Page table size, 4 KB pages (single-level table) ===
+32-bit space: 1048576 entries x 4 bytes = 4194304 bytes = 4.0 MB
+48-bit space: 68719476736 entries x 8 bytes = 549755813888 bytes = 512 GB (per process!)
+   48-bit as 4-level tree, 512 entries/table: one fully used leaf table = 4096 bytes
+
+=== Effective memory-access time ===
+assumptions: memory access = 100 ns, TLB lookup = 10 ns, single-level page table
+without TLB            : 200.0 ns (page-table access + data access)
+with TLB, hit ratio 80%: 130.0 ns   (slow-down vs. no paging: 30.0%)
+with TLB, hit ratio 95%: 115.0 ns   (slow-down vs. no paging: 15.0%)
+with TLB, hit ratio 99%: 111.0 ns   (slow-down vs. no paging: 11.0%)
+with 4-level table, miss costs 4 table reads + data:
+   hit ratio 80%: 190.0 ns
+   hit ratio 95%: 130.0 ns
+   hit ratio 99%: 114.0 ns
+
+$ ./frag_pages
+100 processes, total size 537.1 MB
+smallest process = 9.2 KB, largest process = 46.0 MB
+
+page      total pages page-table(8B)    internal frag  avg/process waste % of mem
+1 KB           549997      4296.9 KB          0.05 MB       0.5 KB          0.01 %
+4 KB           137541      1074.5 KB          0.21 MB       2.2 KB          0.04 %
+2 MB              344         2.7 KB        150.94 MB    1545.7 KB         21.94 %
+
+$ getconf PAGESIZE
+4096
+
+$ ../tools/mytime ./alloc_touch 100
+allocated and touched 100 MB = 25600 pages of 4096 bytes
+	Command being timed: "./alloc_touch"
+	User time (seconds): 0.007580
+	System time (seconds): 0.030264
+	Elapsed (wall clock) time (seconds): 0.037988
+	Maximum resident set size (kbytes): 103972
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 25681
+	Voluntary context switches: 1
+	Involuntary context switches: 1
+	Page size (bytes): 4096
+	Exit status: 0
+
+$ ../tools/mytime /bin/ls  (small program)
+	Command being timed: "/bin/ls"
+	User time (seconds): 0.001077
+	System time (seconds): 0.000000
+	Elapsed (wall clock) time (seconds): 0.001640
+	Maximum resident set size (kbytes): 2124
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 106
+	Voluntary context switches: 1
+	Involuntary context switches: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+$ ./pt_compare
+frames in use: 3072000 of 4194304
+per-process 4-level tables, 300 processes : 27.0 MB  (92.0 KB per process)
+inverted page table (fixed by RAM size)  : 80.0 MB  (16 B entry x 4194304 frames + hash anchors)
+with 1000 such processes the 4-level tables would need about 89.8 MB; the inverted table stays 80.0 MB
+
+4-level walk       : 10.0 ns per translation (4 dependent memory reads)
+inverted hash look-up: 18.3 ns per translation (average chain length 1.31)
+(checksum 84011477341920)

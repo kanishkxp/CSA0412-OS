@@ -1,0 +1,13 @@
+memory limit for the process (cgroup) = 256 MB, random reads per run = 60000
+work set   cold pass random reads   per access  major faults fault rate
+    (MB)         (s)          (s)         (us)      (random)   (random)
+      64        0.02        0.001         0.01             0      0.00%
+     128        0.04        0.001         0.01             0      0.00%
+     192        0.07        0.001         0.01             0      0.00%
+     256        0.10        0.046         0.77           337      0.56%
+     320        0.10        1.080        18.00         12329     20.55%
+     384        0.12        1.957        32.61         20292     33.82%
+     512        0.17        3.031        50.52         30241     50.40%
+     768        0.35        4.463        74.39         40250     67.08%
+    1024        0.40        4.996        83.27         45195     75.33%
+cgroup failcnt (times the limit was hit): 3637349

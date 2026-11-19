@@ -1,0 +1,91 @@
+$ lsblk -o NAME,SIZE,TYPE,ROTA,FSTYPE,MOUNTPOINTS
+NAME    SIZE TYPE ROTA FSTYPE MOUNTPOINTS
+zram0     0B disk    0        
+vda     256G disk    1        /
+vdb     9.5M disk    1        /opt/rclone
+vdc   382.3M disk    1        /opt/claude-code
+vdd    49.5M disk    1        /opt/env-runner
+vde     748K disk    1        /mnt/skills/public
+vdf     5.8M disk    1        /mnt/skills/examples
+
+$ cat /proc/partitions
+major minor  #blocks  name
+
+ 254        0  268435456 vda
+ 254       16       9696 vdb
+ 254       32     391516 vdc
+ 254       48      50688 vdd
+ 254       64        748 vde
+ 254       80       5972 vdf
+
+$ fdisk -l   (fdisk is not installed on this machine)
+./run_q6.sh: line 8: fdisk: command not found
+
+$ blkid /dev/vda
+
+$ findmnt /
+TARGET SOURCE   FSTYPE OPTIONS
+/      /dev/vda ext4   rw,relatime,discard,no_prefetch_block_bitmaps,resv_strict,resuid=65534,resgid=65534
+
+$ cat /proc/swaps
+Filename				Type		Size		Used		Priority
+
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           7.8Gi       677Mi       6.6Gi        16Mi       836Mi       7.2Gi
+Swap:             0B          0B          0B
+
+$ cat /sys/block/vda/queue/rotational  (1 = reported as spinning disk, set by the virtual disk driver)
+1
+
+$ ./raid_calc
+=== Usable capacity, 6 disks of 4 TB (raw 24 TB) ===
+RAID 0  (striping)                  :  24.0 TB  (100%)  survives 0 failures
+RAID 1  (all 6 disks mirror)        :   4.0 TB  ( 17%)  survives 5 failures
+RAID 1  (3 mirrored pairs, no stripe): 12.0 TB  ( 50%)  survives 1 per pair
+RAID 5  (single parity)             :  20.0 TB  ( 83%)  survives 1 failure
+RAID 6  (double parity)             :  16.0 TB  ( 67%)  survives 2 failures
+RAID 10 (3 mirrored pairs, striped) :  12.0 TB  ( 50%)  survives 1 per pair (at least 1, at most 3)
+
+=== Model 1: probability of data loss within one year (disk failure probability p = 2% per year, independent) ===
+RAID 0           : 0.114158  (11.4158%)  any failure
+RAID 1 (2 disks) : 0.00040000  (0.0400%)  both disks of the mirror fail = p^2
+RAID 5 (6 disks) : 0.00568712  (0.5687%)  2 or more of 6 fail
+RAID 6 (6 disks) : 0.0001529146 (0.01529%) 3 or more of 6 fail
+RAID 10 (3 pairs): 0.00119952  (0.1200%)  both disks of any pair fail = 1-(1-p^2)^3
+
+=== Model 2: after one disk has failed, a 24-hour rebuild window (AFR 2% -> per-disk window failure probability) ===
+probability that one given disk fails in 24 h = 5.479e-05
+RAID 1 (2 disks) : the single partner fails in the window      : 5.479e-05
+RAID 5 (6 disks) : any of the 5 remaining disks fails          : 2.739e-04
+RAID 6 (6 disks) : 2 more of the 5 remaining fail              : 3.002e-08
+RAID 10          : the mirror partner of the failed disk fails : 5.479e-05
+expected first failures per year in a 6-disk array: 0.12
+-> RAID 5 data-loss events per year ~ 6p x P(window) = 3.287e-05 (once in 30420 years)
+-> RAID 1/10 per year ~ 6p x P(partner) = 6.575e-06 (once in 152083 years)
+-> RAID 6 per year ~ 6p x P(2 more) = 3.603e-09 (once in 277582502 years)
+
+$ ./parity_demo
+RAID 5: disk holding D2 failed -> rebuilt from parity: OK (identical to the original block)
+RAID 6: disks holding D1 and D3 failed together -> rebuilt from P and Q: OK (both blocks identical to the originals)
+
+CPU time to compute the parity of one stripe (4 x 4 KB data blocks):
+  RAID 5 (P = XOR)         :      324 ns
+  RAID 6 (P and Q)         :    13682 ns   (42.2 x more CPU work)
+
+I/O needed to update ONE data block (small write):
+  RAID 5: read old data, read old P, write new data, write new P                   = 4 disk I/Os
+  RAID 6: read old data, read old P, read old Q, write new data, write new P and Q = 6 disk I/Os
+  RAID 10: write the block to both disks of the mirror                              = 2 disk writes
+  A disk I/O takes about 100 us (SSD) to 8,000 us (hard disk) so the parity CPU time of 13682 ns is small next to the extra I/O.
+
+$ ./read_speed /tmp/q4_data.bin  (run 3 times)
+sequential read (4 MB blocks) :    512 MB in 0.177 s =   2893.4 MB/s
+random read (4 KB blocks)     :  20000 reads in 0.717 s =    109.0 MB/s,    27911 IOPS, 35.8 us per read
+
+sequential read (4 MB blocks) :    512 MB in 0.145 s =   3526.9 MB/s
+random read (4 KB blocks)     :  20000 reads in 0.807 s =     96.8 MB/s,    24787 IOPS, 40.3 us per read
+
+sequential read (4 MB blocks) :    512 MB in 0.203 s =   2519.8 MB/s
+random read (4 KB blocks)     :  20000 reads in 0.812 s =     96.2 MB/s,    24640 IOPS, 40.6 us per read
+

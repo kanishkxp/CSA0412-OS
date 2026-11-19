@@ -1,0 +1,177 @@
+################ 1. Sizes of the executables ################
+bank_dynamic            16640 bytes
+bank_static            825384 bytes
+libencrypt.so           15232 bytes
+
+bank_static:  ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=f576e4713dab53ad91ac7a4874918741b46735c9, for
+bank_dynamic: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=684c
+
+################ 2. ldd (shared libraries) ################
+--- ldd bank_dynamic
+	linux-vdso.so.1 (0x00007fbf5be2c000)
+	libencrypt.so => /home/claude/CSA04-192511278-Assignment3/Q1/./libencrypt.so (0x00007fbf5be1a000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fbf5ba00000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fbf5be2e000)
+--- ldd bank_static
+	not a dynamic executable
+
+################ 3. Normal run of both versions ################
+Using libencrypt v1.0 (old, weak key schedule)
+Encrypted bytes (hex): 0e332921253bc1d9b2ac9097 ...
+Using libencrypt v1.0 (old, weak key schedule)
+Encrypted bytes (hex): 0e332921253bc1d9b2ac9097 ...
+
+################ 4. Addresses (/proc/self/maps) - dynamic version ################
+Using libencrypt v1.0 (old, weak key schedule)
+Encrypted bytes (hex): 0e332921253bc1d9b2ac9097 ...
+---- /proc/self/maps ----
+564f57e67000-564f57e68000 r--p 00000000 fe:00 795065                     /home/claude/CSA04-192511278-Assignment3/Q1/bank_dynamic
+564f57e68000-564f57e69000 r-xp 00001000 fe:00 795065                     /home/claude/CSA04-192511278-Assignment3/Q1/bank_dynamic
+564f57e69000-564f57e6a000 r--p 00002000 fe:00 795065                     /home/claude/CSA04-192511278-Assignment3/Q1/bank_dynamic
+564f57e6a000-564f57e6b000 r--p 00002000 fe:00 795065                     /home/claude/CSA04-192511278-Assignment3/Q1/bank_dynamic
+564f57e6b000-564f57e6c000 rw-p 00003000 fe:00 795065                     /home/claude/CSA04-192511278-Assignment3/Q1/bank_dynamic
+564f923e1000-564f92402000 rw-p 00000000 00:00 0                          [heap]
+7f6d4f600000-7f6d4f628000 r--p 00000000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f6d4f628000-7f6d4f7b1000 r-xp 00028000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f6d4f7b1000-7f6d4f800000 r--p 001b1000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f6d4f800000-7f6d4f804000 r--p 001ff000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f6d4f804000-7f6d4f806000 rw-p 00203000 fe:00 320304                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f6d4f806000-7f6d4f813000 rw-p 00000000 00:00 0 
+7f6d4f85c000-7f6d4f85f000 rw-p 00000000 00:00 0 
+7f6d4f86d000-7f6d4f86e000 r--p 00000000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+7f6d4f86e000-7f6d4f86f000 r-xp 00001000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+7f6d4f86f000-7f6d4f870000 r--p 00002000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+7f6d4f870000-7f6d4f871000 r--p 00002000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+7f6d4f871000-7f6d4f872000 rw-p 00003000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+7f6d4f872000-7f6d4f874000 rw-p 00000000 00:00 0 
+7f6d4f874000-7f6d4f878000 r--p 00000000 00:00 0                          [vvar]
+7f6d4f878000-7f6d4f87a000 r--p 00000000 00:00 0                          [vvar_vclock]
+7f6d4f87a000-7f6d4f87c000 r-xp 00000000 00:00 0                          [vdso]
+7f6d4f87c000-7f6d4f87d000 r--p 00000000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f6d4f87d000-7f6d4f8a8000 r-xp 00001000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f6d4f8a8000-7f6d4f8b2000 r--p 0002c000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f6d4f8b2000-7f6d4f8b4000 r--p 00036000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f6d4f8b4000-7f6d4f8b6000 rw-p 00038000 fe:00 320284                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fff89a54000-7fff89a7a000 rw-p 00000000 00:00 0                          [stack]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+
+################ 4b. Addresses - static version ################
+Using libencrypt v1.0 (old, weak key schedule)
+Encrypted bytes (hex): 0e332921253bc1d9b2ac9097 ...
+---- /proc/self/maps ----
+00400000-00401000 r--p 00000000 fe:00 795067                             /home/claude/CSA04-192511278-Assignment3/Q1/bank_static
+00401000-00487000 r-xp 00001000 fe:00 795067                             /home/claude/CSA04-192511278-Assignment3/Q1/bank_static
+00487000-004ae000 r--p 00087000 fe:00 795067                             /home/claude/CSA04-192511278-Assignment3/Q1/bank_static
+004ae000-004b3000 r--p 000ad000 fe:00 795067                             /home/claude/CSA04-192511278-Assignment3/Q1/bank_static
+004b3000-004b5000 rw-p 000b2000 fe:00 795067                             /home/claude/CSA04-192511278-Assignment3/Q1/bank_static
+004b5000-004bb000 rw-p 00000000 00:00 0 
+0ddc0000-0dde2000 rw-p 00000000 00:00 0                                  [heap]
+7f7debef1000-7f7debef5000 r--p 00000000 00:00 0                          [vvar]
+7f7debef5000-7f7debef7000 r--p 00000000 00:00 0                          [vvar_vclock]
+7f7debef7000-7f7debef9000 r-xp 00000000 00:00 0                          [vdso]
+7ffc51740000-7ffc51766000 rw-p 00000000 00:00 0                          [stack]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+
+################ 5. dlopen()/dlsym() at run time ################
+dlopen OK: libencrypt v1.0 (old, weak key schedule)
+Encrypted bytes (hex): 0e332921253bc1d9b2ac9097 ...
+encrypt_buf() found by dlsym at address 0x7f21584c2110
+---- libencrypt mapping seen in /proc/self/maps ----
+7f21584c1000-7f21584c2000 r--p 00000000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+7f21584c2000-7f21584c3000 r-xp 00001000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+7f21584c3000-7f21584c4000 r--p 00002000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+7f21584c4000-7f21584c5000 r--p 00002000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+7f21584c5000-7f21584c6000 rw-p 00003000 fe:00 795063                     /home/claude/CSA04-192511278-Assignment3/Q1/libencrypt.so
+--- same program, customer enquiry (library not needed):
+Customer enquiry only - encryption library NOT loaded.
+
+################ 6. Start-up time (2000 runs each) ################
+round 1
+./bank_static                runs=2000  mean=714.9 us  min=596.4 us  max=1783.6 us
+./bank_dynamic               runs=2000  mean=818.2 us  min=702.6 us  max=2629.5 us
+./bank_dl                    runs=2000  mean=888.7 us  min=736.0 us  max=3982.4 us
+./bank_dl                    runs=2000  mean=819.2 us  min=676.1 us  max=7001.2 us
+round 2
+./bank_static                runs=2000  mean=689.7 us  min=597.0 us  max=1373.6 us
+./bank_dynamic               runs=2000  mean=835.3 us  min=704.7 us  max=2586.7 us
+./bank_dl                    runs=2000  mean=878.7 us  min=737.1 us  max=5845.9 us
+./bank_dl                    runs=2000  mean=763.5 us  min=673.9 us  max=2551.2 us
+round 3
+./bank_static                runs=2000  mean=683.2 us  min=593.1 us  max=2708.1 us
+./bank_dynamic               runs=2000  mean=872.5 us  min=719.6 us  max=3646.4 us
+./bank_dl                    runs=2000  mean=847.3 us  min=736.8 us  max=2857.8 us
+./bank_dl                    runs=2000  mean=778.5 us  min=677.2 us  max=4630.3 us
+
+################ 7. Memory use of one process ################
+--- static
+	Maximum resident set size (kbytes): 592
+	Minor (reclaiming a frame) page faults: 48
+--- dynamic
+	Maximum resident set size (kbytes): 1780
+	Minor (reclaiming a frame) page faults: 87
+--- static: /proc/8544/smaps_rollup
+Rss:                 752 kB
+Pss:                 744 kB
+Pss_Dirty:            72 kB
+Pss_Anon:             72 kB
+Pss_File:            672 kB
+Pss_Shmem:             0 kB
+Shared_Clean:         12 kB
+Private_Clean:       668 kB
+Private_Dirty:        72 kB
+--- dynamic: /proc/8548/smaps_rollup
+Rss:                1976 kB
+Pss:                 407 kB
+Pss_Dirty:           136 kB
+Pss_Anon:            136 kB
+Pss_File:            271 kB
+Pss_Shmem:             0 kB
+Shared_Clean:       1816 kB
+Private_Clean:        24 kB
+Private_Dirty:       136 kB
+
+################ 8. Replace the shared library WITHOUT recompiling ################
+Using libencrypt v1.0 (old, weak key schedule)
+Encrypted bytes (hex): 0e332921253bc1d9b2ac9097 ...
+Using libencrypt v2.0 (security fix applied)
+Encrypted bytes (hex): 97c86903d4547c3de3af187d ...
+audit: libencrypt v2.0 (security fix applied), first byte 82
+--- static version is unchanged (still has the old code inside):
+Using libencrypt v1.0 (old, weak key schedule)
+Encrypted bytes (hex): 0e332921253bc1d9b2ac9097 ...
+
+################ 9. Two different programs running together - which pages are shared? ################
+=== DYNAMIC: bank_dynamic + audit_dynamic
+filter 'libc': process 8559 has 403 resident read-only/exec pages, process 8560 has 403
+physical frames used by BOTH processes: 399
+=> 399 of 403 pages (99%) are shared
+filter 'libencrypt': process 8559 has 4 resident read-only/exec pages, process 8560 has 4
+physical frames used by BOTH processes: 3
+=> 3 of 4 pages (75%) are shared
+=== STATIC: bank_static + audit_static (libc code is inside each file)
+static: read-only/exec pages mapped by bank_static = 179  by audit_static = 170
+filter 'static': process 8565 has 171 resident read-only/exec pages, process 8566 has 170
+physical frames used by BOTH processes: 0
+=> 0 of 171 pages (0%) are shared
+=== Same binary twice (two copies of bank_dynamic) - code pages come from one page-cache copy
+filter 'bank_dynamic': process 8571 has 4 resident read-only/exec pages, process 8572 has 4
+physical frames used by BOTH processes: 3
+=> 3 of 4 pages (75%) are shared
+filter 'libc': process 8571 has 403 resident read-only/exec pages, process 8572 has 403
+physical frames used by BOTH processes: 399
+=> 399 of 403 pages (99%) are shared
+
+################ 10. Shared library missing ################
+--- bank_dynamic (linked at load time):
+./bank_dynamic: error while loading shared libraries: libencrypt.so: cannot open shared object file: No such file or directory
+exit status = 127
+--- bank_static (nothing to load):
+Using libencrypt v1.0 (old, weak key schedule)
+exit status = 0
+--- bank_dl (dlopen with error handling):
+bank_dl: cannot load ./libencrypt.so: ./libencrypt.so: cannot open shared object file: No such file or directory
+bank_dl: falling back - transaction REFUSED, encryption unavailable.
+exit status = 3
+--- bank_dl, customer enquiry still works:
+Customer enquiry only - encryption library NOT loaded.
+exit status = 0
