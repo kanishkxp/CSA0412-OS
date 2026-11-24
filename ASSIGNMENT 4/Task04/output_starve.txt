@@ -1,0 +1,5 @@
+stream length (ms)     SSTF wait (ms) LOOK wait (ms)
+0                      19.8           12.5             (requests served before 183: SSTF 7, LOOK 5)
+100                    123.0          12.5             (requests served before 183: SSTF 107, LOOK 5)
+500                    529.0          12.5             (requests served before 183: SSTF 507, LOOK 5)
+2000                   2039.8         12.5             (requests served before 183: SSTF 2007, LOOK 5)

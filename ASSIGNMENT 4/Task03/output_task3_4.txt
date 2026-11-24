@@ -1,0 +1,86 @@
+$ dd if=/dev/zero of=disk.img bs=1M count=64 && mkfs.ext4 -F disk.img
+67108864 bytes (67 MB, 64 MiB) copied, 0.0166996 s, 4.0 GB/s
+mke2fs 1.47.0 (5-Feb-2023)
+Discarding device blocks: done                            
+Creating filesystem with 16384 4k blocks and 16384 inodes
+
+Allocating group tables: 0/1   done                            
+Writing inode tables: 0/1   done                            
+Creating journal (1024 blocks): done
+Writing superblocks and filesystem accounting information: 0/1   done
+
+
+$ echo "hello simats" > sample.txt ; stat sample.txt
+  File: sample.txt
+  Size: 13        	Blocks: 8          IO Block: 4096   regular file
+Device: 254,0	Inode: 442401      Links: 1
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2026-11-19 04:16:46.001536266 +0000
+Modify: 2026-11-19 04:16:46.001536266 +0000
+Change: 2026-11-19 04:16:46.001536266 +0000
+ Birth: 2026-11-19 04:16:46.001536266 +0000
+
+$ ls -i sample.txt
+442401 sample.txt
+
+$ df -i .
+Filesystem       Inodes  IUsed    IFree IUse% Mounted on
+/dev/vda       16777216 165443 16611773    1% /
+
+$ df -h .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda        252G  6.6G   10G  40% /
+
+$ tune2fs -l disk.img | head -40
+tune2fs 1.47.0 (5-Feb-2023)
+Filesystem volume name:   <none>
+Last mounted on:          <not available>
+Filesystem UUID:          89105647-03c6-4ac6-8aca-cc2c1a861aa7
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+Filesystem flags:         signed_directory_hash 
+Default mount options:    user_xattr acl
+Filesystem state:         clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              16384
+Block count:              16384
+Reserved block count:     819
+Overhead clusters:        2059
+Free blocks:              14319
+Free inodes:              16373
+First block:              0
+Block size:               4096
+Fragment size:            4096
+Group descriptor size:    64
+Reserved GDT blocks:      7
+Blocks per group:         32768
+Fragments per group:      32768
+Inodes per group:         16384
+Inode blocks per group:   1024
+Flex block group size:    16
+Filesystem created:       Thu Nov 19 04:16:45 2026
+Last mount time:          n/a
+Last write time:          Thu Nov 19 04:16:46 2026
+Mount count:              0
+Maximum mount count:      -1
+Last checked:             Thu Nov 19 04:16:45 2026
+Check interval:           0 (<none>)
+Lifetime writes:          45 kB
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:	          256
+
+$ dumpe2fs -h disk.img | grep -E "Block size|Inode size|Free blocks|Free inodes|Journal"
+Inode count:              16384
+Free blocks:              14319
+Free inodes:              16373
+Block size:               4096
+Inode size:	          256
+Journal inode:            8
+Journal backup:           inode blocks
+Journal features:         (none)
+Journal sequence:         0x00000001
+Journal start:            0

@@ -1,0 +1,2 @@
+LOOK   53 37 14 65 67 98 122 124 183  -> 208 cylinders
+C-LOOK 53 65 67 98 122 124 183 14 37  -> 153 cylinders (+169 for the jump = 322)

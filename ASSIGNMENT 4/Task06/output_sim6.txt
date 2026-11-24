@@ -1,0 +1,6 @@
+design                                      HDDs SSD hit   mean ms    p95 ms    p99 ms     max ms HDD busy
+A: 96 HDD, FCFS, no SSD cache                 96    0.0%      42.1     108.8     162.9      333.0      80%
+A2: 24 HDD, FCFS, no SSD cache                24    0.0%   65630.9  124631.8  130137.9   133752.3     100%
+A3: 24 HDD, C-LOOK, no SSD cache              24    0.0%   42823.5   92968.4   99048.2   104277.8     100%
+B2: 24 HDD, FCFS, SSD cache (top 1000)        24   82.4%       4.4      26.4      47.9      141.1      56%
+B: 24 HDD, C-LOOK, SSD cache (top 1000)       24   82.4%       4.2      24.3      48.0      162.8      56%

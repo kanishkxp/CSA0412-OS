@@ -1,0 +1,12 @@
+ users      req/s  NFS 1 server ms      DFS read ms     DFS write ms
+   100         50              3.8              3.3              3.5
+   300        150              6.2              3.5              4.2
+   500        250             16.0              3.7              5.3
+   600        300             80.0              3.8              6.2
+  1000        500       overloaded              4.4             16.0
+  3000       1500       overloaded             16.0       overloaded
+  6000       3000       overloaded       overloaded       overloaded
+
+Availability of one server        : 99.5000 %  (down about 43.8 hours a year)
+Availability with 3 replicas      : 99.999988 %  (down about 0.0011 hours a year)
+Storage for 100 TB of data        : NFS 1 copy = 100 TB, 3 replicas = 300 TB

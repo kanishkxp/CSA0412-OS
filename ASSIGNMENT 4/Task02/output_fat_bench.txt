@@ -1,0 +1,6 @@
+   block k    FAT walk (ms)       index (ms)   same block
+        10           0.0009      0.000000554          yes
+      1000           0.0416      0.000000563          yes
+    100000           2.5113      0.000000546          yes
+   1048575          24.8456      0.000000552          yes
+FAT memory for this file: 4.0 MB

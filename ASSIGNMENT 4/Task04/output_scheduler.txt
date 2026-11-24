@@ -1,0 +1,12 @@
+$ lsblk -d -o NAME,ROTA,TYPE
+NAME  ROTA TYPE
+zram0    0 disk
+vda      1 disk
+vdb      1 disk
+vdc      1 disk
+vdd      1 disk
+
+$ cat /sys/block/vda/queue/scheduler
+none [mq-deadline] kyber bfq 
+$ cat /sys/block/vda/queue/rotational
+1
