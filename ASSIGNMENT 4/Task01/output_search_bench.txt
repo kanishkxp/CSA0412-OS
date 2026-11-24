@@ -1,0 +1,4 @@
+lookups: 20000
+flat directory (12,000 entries): 310.45 ms total, 15.523 microseconds per lookup
+tree (12 + 1000 entries)       : 25.84 ms total, 1.292 microseconds per lookup
+(checksum 130217690)
