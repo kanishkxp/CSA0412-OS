@@ -1,0 +1,51 @@
+$ ps aux --sort=-%cpu | head -8
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root       231 24.2  0.7  40556 30420 ?        R    11:35   0:00 /usr/bin/python3 /usr/local/bin/gunicorn -w 2 -b 127.0.0.1:8000 app:app
+root       230 23.6  0.7  40556 30420 ?        R    11:35   0:00 /usr/bin/python3 /usr/local/bin/gunicorn -w 2 -b 127.0.0.1:8000 app:app
+root       234 11.5  0.1  13424  8068 ?        S    11:35   0:00 ab -n 60000 -c 50 -q http://127.0.0.1:8000/result/192511278
+root       228  1.9  0.6 107764 26192 ?        Sl   11:35   0:00 /usr/bin/python3 /usr/local/bin/gunicorn -w 2 -b 127.0.0.1:8000 app:app
+root        28  0.1  0.0      0     0 ?        I    11:34   0:00 [kworker/u4:1-events_unbound]
+
+$ top -b -n 1 | head -14
+top - 11:35:59 up 1 min,  0 user,  load average: 0.59, 0.17, 0.06
+Tasks:  61 total,   3 running,  58 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 75.0 us, 16.7 sy,  0.0 ni,  0.0 id,  0.0 wa,  0.0 hi,  8.3 si,  0.0 st 
+MiB Mem :   3992.3 total,   3782.9 free,    271.3 used,    114.1 buff/cache     
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3721.0 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+  230 root      20   0   40556  30420   8636 R  40.0   0.7   0:01.02 gunicorn
+  231 root      20   0   40556  30420   8636 R  40.0   0.7   0:01.04 gunicorn
+  234 root      20   0   13424   8084   6252 S  10.0   0.2   0:00.25 ab
+
+$ free -m
+               total        used        free      shared  buff/cache   available
+Mem:            3992         271        3782          12         114        3720
+Swap:              0           0           0
+
+$ vmstat 1 4
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 3  0      0 3873656  11384 105488    0    0   900    46  113   24 21  4 73  1  0  0
+ 2  0      0 3873656  11384 105488    0    0     0     0  258 10152 82 18  0  0  0  0
+ 2  0      0 3869876  11384 105472    0    0     0   124  255 9529 78 18  0  0  4  0
+ 3  0      0 3869876  11384 105488    0    0     0     0  254 10109 82 17  0  0  1  0
+
+$ iostat -x 1 2 | head -9
+Linux 6.18.44-fc-v653 (vm) 	11/19/26 	_x86_64_	(1 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+          23.28    0.00    4.90    0.60    0.16   71.06
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm
+vda             26.40    766.59    22.12  45.59    0.29    29.04    2.48     46.71     3.29  57.06    0.24    18.87    0.05      0.21     0.
+vdb              1.94    104.92     0.00   0.00    0.17    54.20    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.
+vdc              0.10      0.15     0.00   0.00    0.00     1.56    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.
+
+$ df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda        252G  6.6G   10G  40% /
+
+$ ss -tulpn | grep 8000
+tcp   LISTEN 48     2048       127.0.0.1:8000      0.0.0.0:*    users:(("gunicorn",pid=231,fd=3),("gunicorn",pid=230,fd=3),("gunicorn",pid=2
+

@@ -1,0 +1,15 @@
+average logins per second      : 20.8
+average requests per second    : 208
+peak requests per second       : 1042
+one 1-CPU container handles    : 319 requests/s (measured 3190 / 10)
+containers needed at the peak  : 4
+with 50% headroom              : 6
+2-vCPU virtual machines needed : 2 (+1 spare)
+
+--- yearly cost model (USD, assumptions) ---
+fixed VMs sized for result day (6 VMs all year) :       5046
+autoscaled nodes (2 always, 4 for 8 h)           :       1683
++ control plane 876, database 1226, load balancer 219
+public cloud total (autoscaled)                  :       4005
+own 2 servers (4,000 each over 5 years + power)  :       2100  (+ staff time)
+idle share of fixed VMs: they are busy 8 of 8760 hours = 0.09% of the year

@@ -1,0 +1,23 @@
+$ ./log_analysis.sh sample_access.log
+== Top 5 requested URLs ==
+     79 /login
+     78 /report.pdf
+     77 /result
+     69 /index.html
+     68 /admin
+== Top 5 clients ==
+     50 10.0.0.8
+     47 10.0.0.5
+     46 10.0.0.2
+     44 10.0.0.7
+     44 10.0.0.4
+== Server errors (5xx) and client errors (4xx) ==
+4xx: 60   5xx: 30
+== Requests per hour ==
+  09:00 113
+  10:00 298
+  11:00 89
+
+$ ./disk_alert.sh 30
+WARNING: / is 40% full (/dev/vda)
+disk check finished at 2026-11-19 11:34:51 (limit 30%)

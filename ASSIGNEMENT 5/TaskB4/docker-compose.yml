@@ -1,0 +1,16 @@
+# Task B4.1: a second service (online exam service) next to the result portal, each with its own limits.
+services:
+  portal:
+    image: result-portal
+    ports: ["8000:8000"]
+    deploy:
+      resources:
+        limits: { cpus: "0.50", memory: 256M }
+        reservations: { cpus: "0.25", memory: 128M }
+  exam:
+    image: result-portal          # same small app, used here as a stand-in for the exam service
+    ports: ["8001:8000"]
+    deploy:
+      resources:
+        limits: { cpus: "0.50", memory: 512M }
+        reservations: { cpus: "0.25", memory: 256M }

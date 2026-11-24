@@ -1,0 +1,5 @@
+# m h dom mon dow  command
+0 * * * *   /home/kanishk/os/TaskB1/log_summary.sh >> /var/log/log_summary.log 2>&1
+*/30 * * * * /home/kanishk/os/TaskB1/disk_alert.sh 80 >> /var/log/disk_alert.log 2>&1
+30 2 * * *  tar -czf /backup/portal-$(date +\%F).tar.gz /opt/result-portal /etc/nginx
+0 3 * * 0   /usr/sbin/logrotate /etc/logrotate.conf

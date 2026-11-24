@@ -1,0 +1,5 @@
+  PID   RSS(KB) COMMAND
+  175   26132   gunicorn master  (-w 2)
+  176   30492   gunicorn worker 1
+  177   30496   gunicorn worker 2
+total RSS about 87 MB for the 2 workers + master (running directly on Linux, no container)

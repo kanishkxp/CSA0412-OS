@@ -1,0 +1,26 @@
+# Portal + database. The database data lives in a named volume so it survives container removal.
+services:
+  portal:
+    build: .
+    image: result-portal
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://portal:secret@db:5432/results
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: portal
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: results
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+volumes:
+  dbdata:

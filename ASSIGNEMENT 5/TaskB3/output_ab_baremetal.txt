@@ -1,0 +1,18 @@
+--- run 1: ab -n 20000 -c 50
+Complete requests:      20000
+Failed requests:        0
+Requests per second:    3186.83 [#/sec] (mean)
+Time per request:       15.690 [ms] (mean)
+Time per request:       0.314 [ms] (mean, across all concurrent requests)
+--- run 2: ab -n 20000 -c 50
+Complete requests:      20000
+Failed requests:        0
+Requests per second:    3152.99 [#/sec] (mean)
+Time per request:       15.858 [ms] (mean)
+Time per request:       0.317 [ms] (mean, across all concurrent requests)
+--- run 3: ab -n 20000 -c 50
+Complete requests:      20000
+Failed requests:        0
+Requests per second:    3228.41 [#/sec] (mean)
+Time per request:       15.488 [ms] (mean)
+Time per request:       0.310 [ms] (mean, across all concurrent requests)

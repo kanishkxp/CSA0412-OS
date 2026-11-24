@@ -1,0 +1,17 @@
+# Ansible playbook for the alternative concept in Part A2 (not run here).
+- hosts: portal_servers
+  become: true
+  tasks:
+    - name: Install packages
+      apt: { name: [nginx, python3-venv, ufw], state: present, update_cache: true }
+    - name: Create service user
+      user: { name: portal, shell: /usr/sbin/nologin, system: true }
+    - name: Copy systemd unit
+      copy: { src: result-portal.service, dest: /etc/systemd/system/result-portal.service }
+      notify: restart portal
+    - name: Allow SSH, HTTP and HTTPS
+      ufw: { rule: allow, port: "{{ item }}", proto: tcp }
+      loop: ["22", "80", "443"]
+  handlers:
+    - name: restart portal
+      systemd: { name: result-portal, state: restarted, enabled: true, daemon_reload: true }
